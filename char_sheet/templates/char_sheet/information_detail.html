@@ -1,0 +1,12 @@
+{% extends "char_sheet/base.html"%}
+{% block content %}
+
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <h2 class="article-title" >{{ object.name }}</h2>
+      </div>
+      <p class="article-content">race: {{object.race}}, class: {{ object.job_class }}, level {{ object.level }}</p>
+    </div>
+  </article>
+{% endblock content %}

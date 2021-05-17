@@ -1,0 +1,16 @@
+{% extends "char_sheet/base.html"%}
+{% block content %}
+  {% for character in characters %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ character.player }}</a>
+      </div>
+      <h2><a class="article-title" href="{% url 'character-detail' character.id %}">{{ character.name }}</a></h2>
+      <p class="article-content">race: {{character.race}}, class: {{ character.job_class }}, level {{ character.level }}</p>
+    </div>
+  </article>
+  <!-- <h1>{{ character.character_name }}</h1> -->
+  <!-- <p> Played by {{ character.player }} as {{ character.class }} that is a {{ character.race }} </p> -->
+  {% endfor %}
+{% endblock content %}

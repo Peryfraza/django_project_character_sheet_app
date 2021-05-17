@@ -1,0 +1,18 @@
+{% extends "char_sheet/base.html"%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1 style = "text-align:center">Your characters, {{ user.username }}: </h1>
+  {% for character in characters %}
+    {% if character.player.username == user.username %}
+      <article class="media content-section">
+        <div class="media-body">
+          <h2><a class="article-title" href="#">{{ character.name }}</a></h2>
+          <p class="article-content">race: {{character.race}}, class: {{ character.job_class }}, level {{ character.level }}</p>
+          <small><p class="article-content">notes: {{character.notes}}</p></small>
+        </div>
+      </article>
+    {% endif %}
+  {% endfor %}
+{% endblock content %}

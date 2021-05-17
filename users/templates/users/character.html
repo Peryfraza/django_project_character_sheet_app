@@ -1,0 +1,34 @@
+{% extends "char_sheet/base.html"%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1 style = "text-align:center">Your character, {{ character.character_id.name }}: </h1>
+  <article class="media content-section">
+    <div class="media-body">
+      <h2> Informations:</h2>
+      <p class="article-content">race: {{character.character_id.race}}, class: {{ character.character_id.job_class }}</p>
+      <p class="article-content">level {{ character.character_id.level }}, hit points: {{character.character_id.hit_points}}, magic points: {{ character.character_id.magic_points }}</p>
+      <p class="article-content">race: {{character.character_id.race}}, class: {{ character.character_id.job_class }}, level {{ character.character_id.level }}</p>
+      <small><p class="article-content">notes: {{character.character_id.notes}}</p></small>
+    </div>
+    <div class="media-body">
+      <h2> Special abilities:</h2>
+      <p class="article-content">racial ability: {{character.character_id.race.special_ability}}</p>
+      <p class="article-content">class abilities: {{character.character_id.job_class.special_ability}}</p>
+    </div>
+    <div class="media-body">
+      <h2> Race and Class:</h2>
+      <p class="article-content">race: {{character.character_id.race}}, class: {{ character.character_id.job_class }}, level {{ character.character_id.level }}</p>
+      <small><p class="article-content">race description: {{character.character_id.job_class.description}}</p></small>
+      <small><p class="article-content">class description: {{character.character_id.race.description}}</p></small>
+    </div>
+    <div class="media-body">
+      <h2> Items:</h2>
+      <p class="article-content">{{ character.character_id.job_class.weapon }}</p>
+      {% for weap in items %}
+        {% if {{weap.character_id}} %}
+      {% endfor %}
+    </div>
+  </article>
+{% endblock content %}
