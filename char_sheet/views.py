@@ -19,7 +19,7 @@ class CharactersDetailView(DetailView):
 
 class CharactersCreateView(CreateView):
     model = Information
-    fields = ['name', 'age', 'race', 'job_class', 'level', 'hit_points', 'magic_points']
+    fields = ['name', 'age', 'race', 'job_class', 'level', 'hit_points', 'magic_points', 'notes']
 
     def form_valid(self, form):
         form.instance.player = self.request.user
@@ -30,3 +30,13 @@ def about(request):
 
 def site(request):
     return HttpResponse('<h1 style = "background-color:#ad5353; color:#360000; text-align:center">char_sheet site</h1>')
+
+def items(request):
+    context = {
+        'items' : Items.objects.all(),
+        'abilities': Abilities.objects.all(),
+        'races': Race.objects.all(),
+        'classes': Job_class.objects.all(),
+        'enchantements': Enchantements.objects.all()
+    }
+    return render(request, 'char_sheet/items.html', context)

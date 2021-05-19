@@ -8,4 +8,5 @@ urlpatterns = [
     path('characters/new/', CharactersCreateView.as_view(), name='character-create'),
     path('site/',views.site, name='char_sheet-site'),
     path('about/', views.about, name='char_sheet-about'),
+    path('items/', views.items, name='char_sheet-items'),
 ]

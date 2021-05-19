@@ -1,0 +1,56 @@
+{% extends "char_sheet/base.html"%}
+
+{% block content %}
+<title>Data</title>
+  <h1 style = "text-align:center">Items: </h1>
+    {% for item in items %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2>{{ item.item_name }}</h2>
+            <p class="article-content">damage: {{item.damage_points}}, price: {{ item.price }}</p>
+            <small><p class="article-content">special ability: {{item.special_ability}}</p></small>
+          </div>
+        </article>
+    {% endfor %}
+  <h1 style = "text-align:center">Abilities: </h1>
+    {% for ability in abilities %}
+      <article class="media content-section">
+        <div class="media-body">
+          <h2>{{ ability.ability_name }}</h2>
+          <p class="article-content">level: {{ability.ability_level}}, score: {{ability.ability_score}}, magical: {{ ability.ability_is_magical }}</p>
+          <small><p class="article-content">description: {{ability.ability_description}}</p></small>
+        </div>
+      </article>
+    {% endfor %}
+  <h1 style = "text-align:center">Race: </h1>
+    {% for race in races %}
+      <article class="media content-section">
+        <div class="media-body">
+          <h2>{{ race }}</h2>
+          <small><p class="article-content">description: {{race.description}}</p></small>
+          <small><p class="article-content">special ability: {{race.special_ability}}</p></small>
+        </div>
+      </article>
+    {% endfor %}
+  <h1 style = "text-align:center">Class: </h1>
+    {% for class in classes %}
+      <article class="media content-section">
+        <div class="media-body">
+          <h2>{{ class }}</h2>
+          <p class="article-content">weapon: {{class.weapon}}</p>
+          <small><p class="article-content">description: {{class.description}}</p></small>
+          <small><p class="article-content">special ability: {{class.special_ability}}</p></small>
+        </div>
+      </article>
+    {% endfor %}
+  <h1 style = "text-align:center">Enchantements: </h1>
+    {% for ench in enchantements %}
+      <article class="media content-section">
+        <div class="media-body">
+          <h2>{{ ench.enchantement_name }}</h2>
+          <p class="article-content">adds {{ench.additional_damage}} damage</p>
+          <small><p class="article-content">description: {{ench.description}}</p></small>
+        </div>
+      </article>
+    {% endfor %}
+{% endblock content %}
