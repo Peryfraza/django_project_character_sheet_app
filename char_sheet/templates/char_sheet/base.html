@@ -12,11 +12,6 @@
 
     <link rel="stylesheet" type="text/css" href="{% static '/char_sheet/main.css' %}">
 
-    {% if game_name %}
-	     <title>Game: {{ game_name }}</title>
-    {% else %}
-	     <title> No associated game </title>
-    {% endif %}
 </head>
 <body>
   <header class="site-header">
@@ -35,7 +30,7 @@
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
             {% if user.is_authenticated %}
-              <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+              <a class="nav-item nav-link" href="{% url 'profile' %}">Your characters</a>
               <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
             {% else %}
               <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
@@ -62,13 +57,14 @@
         <div class="content-section">
           <p class='text-muted'>
             {% if user.is_authenticated %}
-              <h3 style="text-align:center">Welcome, {{ request.user.username }}!<br> Check out:</h3>
+              <h3 style="text-align:center">Welcome, {{ request.user.username }}!</h3>
             {% else %}
-              <h3 style="text-align:center">Check out:</h3>
+              <h3 style="text-align:center">Welcome</h3>
             {% endif %}
             <ul class="list-group">
               <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'character-create' %}">Create a character</a></li>
-              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="#">Items</a></li>
+              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="#">Delete a character</a></li>
+              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="#">Data</a></li>
             </ul>
           </p>
         </div>

@@ -4,9 +4,23 @@
   <article class="media content-section">
     <div class="media-body">
       <div class="article-metadata">
-        <h2 class="article-title" >{{ object.name }}</h2>
+        <h2 class="article-title" >Character: {{ object.name }}</h2>
       </div>
-      <p class="article-content">race: {{object.race}}, class: {{ object.job_class }}, level {{ object.level }}</p>
-    </div>
+      <div class="media-body">
+        <h2> Informations:</h2>
+        <p class="article-content">level {{ object.level }}, hit points: {{object.hit_points}}, magic points: {{ object.magic_points }}</p>
+        <small><p class="article-content">notes: {{object.notes}}</p></small>
+      </div>
+      <div class="media-body">
+        <h2> Special abilities:</h2>
+        <p class="article-content">racial ability: {{object.race.special_ability}}</p>
+        <p class="article-content">class abilities: {{object.job_class.special_ability}}</p>
+      </div>
+      <div class="media-body">
+        <h2> Race and Class:</h2>
+        <p class="article-content">race: {{object.race}}, class: {{ object.job_class }}</p>
+        <small><p class="article-content">race description: {{object.job_class.description}}</p></small>
+        <small><p class="article-content">class description: {{object.race.description}}</p></small>
+      </div>
   </article>
 {% endblock content %}

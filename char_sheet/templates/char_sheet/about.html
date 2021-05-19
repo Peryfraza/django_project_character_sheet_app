@@ -1,4 +1,17 @@
 {% extends "char_sheet/base.html"%}
 {% block content %}
-  <h1> AAAABOUT </h1>
+<title>{{ title }}</title>
+  <h1> Create your characters with this site! <br>You can: </h1>
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-light">Create a character</li>
+      <li class="list-group-item list-group-item-light">Delete a character</li>
+      <li class="list-group-item list-group-item-light">View all characters</li>
+      <li class="list-group-item list-group-item-light">View your own characters</li>
+      <li class="list-group-item list-group-item-light">View detailed information about characters</li>
+      <li class="list-group-item list-group-item-light">View available items, abilities, races, classes etc.</li>
+      <li class="list-group-item list-group-item-light">Create an account</li>
+      <li class="list-group-item list-group-item-light">Log in</li>
+      <li class="list-group-item list-group-item-light">Log out</li>
+    </ul>
+  <small>In the future, more functionalities might become available!</small>
 {% endblock content %}

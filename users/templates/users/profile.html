@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<title>profile</title>
   <h1 style = "text-align:center">Your characters, {{ user.username }}: </h1>
   {% for character in characters %}
     {% if character.player.username == user.username %}

@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView
 # Create your views here.
 def home(request):
     context = {
-        'characters': Information.objects.all()
+        'characters': Information.objects.all(),
     }
     return render(request, 'char_sheet/home.html', context)
 
@@ -26,7 +26,7 @@ class CharactersCreateView(CreateView):
         return super().form_valid(form)
 
 def about(request):
-    return render(request, 'char_sheet/about.html', {'game_name': 'aaa'})
+    return render(request, 'char_sheet/about.html', {'title': 'about'})
 
 def site(request):
     return HttpResponse('<h1 style = "background-color:#ad5353; color:#360000; text-align:center">char_sheet site</h1>')
