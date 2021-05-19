@@ -13,6 +13,9 @@ class Items(models.Model):
     def __str__(self):
         return self.item_name +' ( '+'dmg = '+str(self.damage_points)+' )'
 
+    def get_absolute_url(self):
+        return reverse('char_sheet-items')
+
 class Abilities(models.Model):
     ability_name = models.CharField(max_length=30)
     ability_description = models.CharField(max_length=250, blank=True, null=True)
@@ -96,7 +99,7 @@ class Information(models.Model):
     notes = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
-        return 'player: ' + str(player) + self.name+" the " + str(self.race) + ' ' + str(self.job_class) + ' ( ' + str(self.age) + ' )'
+        return 'player: ' + str(self.player) + self.name+" the " + str(self.race) + ' ' + str(self.job_class) + ' ( ' + str(self.age) + ' )'
 
     def get_absolute_url(self):
         return reverse('character-detail', kwargs={'pk': self.pk})
@@ -107,6 +110,9 @@ class Character_items(models.Model):
 
     def __str__(self):
         return str(self.character_id) + ' carries ' + str(self.item_name)
+
+    def get_absolute_url(self):
+        return reverse('character-details', kwargs={'pk': self.character_id.pk})
 
 class Character_abilities(models.Model):
     information_id = models.ForeignKey(Information, on_delete=models.CASCADE)

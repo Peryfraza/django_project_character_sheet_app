@@ -17,6 +17,16 @@ class CharactersListView(ListView):
 class CharactersDetailView(DetailView):
     model = Information
 
+class Character_itemsDetailView(DetailView):
+    model = Character_items
+
+class ItemsCreateView(CreateView):
+    model = Items
+    fields = ['item_name', 'damage_points', 'special_ability', 'price']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
 class CharactersCreateView(CreateView):
     model = Information
     fields = ['name', 'age', 'race', 'job_class', 'level', 'hit_points', 'magic_points', 'notes']

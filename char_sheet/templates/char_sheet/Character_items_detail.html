@@ -1,0 +1,20 @@
+{% extends "char_sheet/base.html"%}
+{% block content %}
+
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <h2 class="article-title" >Character: {{ object.character_id.name }}</h2>
+      </div>
+      <div class="media-body">
+        <h2> Items:</h2>
+        <article class="media content-section">
+          <div class="media-body">
+            <h2>{{ object.item_name.item_name }}</h2>
+            <p class="article-content">damage: {{object.item_name.damage_points}}, price: {{ object.item_name.price }}</p>
+            <small><p class="article-content">special ability: {{object.item_name.special_ability}}</p></small>
+          </div>
+        </article>
+      </div>
+  </article>
+{% endblock content %}
