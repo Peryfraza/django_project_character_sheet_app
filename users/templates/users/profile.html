@@ -9,7 +9,7 @@
     {% if character.player.username == user.username %}
       <article class="media content-section">
         <div class="media-body">
-          <h2><a class="article-title" href="#">{{ character.name }}</a></h2>
+          <h2><a class="article-title" href="{% url 'character-detail' character.id %}">{{ character.name }}</a></h2>
           <p class="article-content">race: {{character.race}}, class: {{ character.job_class }}, level {{ character.level }}</p>
           <small><p class="article-content">notes: {{character.notes}}</p></small>
         </div>

@@ -1,0 +1,16 @@
+{% extends "char_sheet/base.html"%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <title>{{name.name}}'s items</title>
+  <article class="media content-section">
+    <div class="media-body">
+    <h2 style = "text-align:center">{{name.name}} carries: </h2>
+      {% for it in query %}
+        <h6 class="article-content">-> {{it.item_name}}</h6>
+      {% endfor %}
+    </div>
+    <a class="article-title" href="{% url 'character_items-create' %}">Add an item for {{name.name}}</a>
+  </article>
+{% endblock content %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Items, Abilities, Race, Job_class, Information, Character_items, Character_abilities, Enchantements, Item_enchantements
+from .models import Items, Abilities, Race, Job_class, Information, Character_abilities, Enchantements, Item_enchantements
+from .models import Character_items as ci
 from django.views.generic import ListView, DetailView, CreateView
 # Create your views here.
 def home(request):
@@ -18,7 +19,7 @@ class CharactersDetailView(DetailView):
     model = Information
 
 class Character_itemsDetailView(DetailView):
-    model = Character_items
+    model = ci
 
 class ItemsCreateView(CreateView):
     model = Items
@@ -33,6 +34,13 @@ class CharactersCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.player = self.request.user
+        return super().form_valid(form)
+
+class Character_itemsCreateView(CreateView):
+    model = ci
+    fields = ['character_id','item_name']
+
+    def form_valid(self, form):
         return super().form_valid(form)
 
 def about(request):
@@ -50,3 +58,10 @@ def items(request):
         'enchantements': Enchantements.objects.all()
     }
     return render(request, 'char_sheet/items.html', context)
+
+def trial(request, pk):
+    context = {
+        'query': ci.objects.filter(character_id=pk),
+        'name': Information.objects.get(pk=pk),
+    }
+    return render(request, 'char_sheet/trial.html', context)

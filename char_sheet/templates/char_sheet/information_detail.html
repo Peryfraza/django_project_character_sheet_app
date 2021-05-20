@@ -1,6 +1,7 @@
 {% extends "char_sheet/base.html"%}
 {% block content %}
 
+  <title>{{object.name}}</title>
   <article class="media content-section">
     <div class="media-body">
       <div class="article-metadata">
@@ -21,6 +22,9 @@
         <p class="article-content">race: {{object.race}}, class: {{ object.job_class }}</p>
         <small><p class="article-content">race description: {{object.job_class.description}}</p></small>
         <small><p class="article-content">class description: {{object.race.description}}</p></small>
+      </div>
+      <div class="media-body">
+        <a href="{% url 'char_sheet-trial' object.id %}"><h2>Items</h2></a>
       </div>
   </article>
 {% endblock content %}
