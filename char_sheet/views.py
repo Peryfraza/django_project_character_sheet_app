@@ -38,10 +38,13 @@ class CharactersCreateView(CreateView):
 
 class Character_itemsCreateView(CreateView):
     model = ci
-    fields = ['character_id','item_name']
+    fields = ['character_id', 'item_name']
 
     def form_valid(self, form):
-        return super().form_valid(form)
+        if form.instance.character_id.player == self.request.user:
+            return super().form_valid(form)
+        else:
+            return super().form_invalid(form)
 
 def about(request):
     return render(request, 'char_sheet/about.html', {'title': 'about'})
@@ -59,9 +62,9 @@ def items(request):
     }
     return render(request, 'char_sheet/items.html', context)
 
-def trial(request, pk):
+def carries(request, pk):
     context = {
         'query': ci.objects.filter(character_id=pk),
         'name': Information.objects.get(pk=pk),
     }
-    return render(request, 'char_sheet/trial.html', context)
+    return render(request, 'char_sheet/carries.html', context)

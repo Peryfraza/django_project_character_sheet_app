@@ -99,7 +99,7 @@ class Information(models.Model):
     notes = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
-        return 'player: ' + str(self.player) + self.name+" the " + str(self.race) + ' ' + str(self.job_class) + ' ( ' + str(self.age) + ' )'
+        return self.name+" the " + str(self.race) + ' ' + str(self.job_class) + ' ( ' + str(self.age) + ' )'
 
     def get_absolute_url(self):
         return reverse('character-detail', kwargs={'pk': self.pk})
@@ -112,7 +112,7 @@ class Character_items(models.Model):
         return str(self.character_id) + ' carries ' + str(self.item_name)
 
     def get_absolute_url(self):
-        return reverse('character-details', kwargs={'pk': self.character_id.pk})
+        return reverse('profile')
 
 class Character_abilities(models.Model):
     information_id = models.ForeignKey(Information, on_delete=models.CASCADE)

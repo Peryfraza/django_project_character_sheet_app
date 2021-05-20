@@ -12,5 +12,5 @@ urlpatterns = [
     path('site/',views.site, name='char_sheet-site'),
     path('about/', views.about, name='char_sheet-about'),
     path('items/', views.items, name='char_sheet-items'),
-    path('trial/<int:pk>', views.trial, name='char_sheet-trial'),
+    path('carries/<int:pk>', views.carries, name='char_sheet-carries'),
 ]
