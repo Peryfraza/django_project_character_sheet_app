@@ -7,11 +7,11 @@
     <form method="POST">
       {% csrf_token %}
       <fieldset class="form-group">
-        <legend class="border-bottom mb-4"> Choose an item to add. You can add items only for your own characters </legend>
+        <legend class="border-bottom mb-4"> Choose an item to add. </legend>
         {{ form|crispy }}
       </fieldset>
       <div class="form-group">
-        <button cladd="btn btn-outline-info" type="submit"> add </button>
+        <button class="btn btn-outline-info" type="submit"> add </button>
       </div>
     </form>
   </div>

@@ -24,7 +24,11 @@
         <small><p class="article-content">class description: {{object.race.description}}</p></small>
       </div>
       <div class="media-body">
-        <a href="{% url 'char_sheet-carries' object.id %}"><h2>Items</h2></a>
+        <a href="{% url 'char_sheet-carries' object.id %}"><h2><u>Items</u></h2></a>
+      </div>
+      <div class="media-body">
+        <a class="btn btn-outline-secondary" href="{% url 'character-update' object.id %}"> Update the character </a>
+        <a class="btn btn-outline-secondary" href="{% url 'character-delete' object.id %}"> Delete the character </a>
       </div>
   </article>
 {% endblock content %}

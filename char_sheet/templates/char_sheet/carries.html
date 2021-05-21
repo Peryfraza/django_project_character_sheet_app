@@ -9,8 +9,11 @@
     <h2 style = "text-align:center">{{name.name}} carries: </h2>
       {% for it in query %}
         <h6 class="article-content">-> {{it.item_name}}</h6>
+        <a class="btn btn-outline-secondary" href="{% url 'character_items-delete' it.pk %}"><small>stop carrying {{it.item_name.item_name}}</small></a>
       {% endfor %}
     </div>
-    <a class="article-title" href="{% url 'character_items-create'%}">Add an item for {{name.name}}</a>
   </article>
+  <div class="media-body">
+    <a class="btn btn-outline-secondary" href="{% url 'character_items-create' name.pk %}">Add an item for {{name.name}}</a>
+  </div>
 {% endblock content %}
