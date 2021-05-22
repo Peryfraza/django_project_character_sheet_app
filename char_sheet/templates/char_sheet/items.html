@@ -9,6 +9,9 @@
             <h2>{{ item.item_name }}</h2>
             <p class="article-content">damage: {{item.damage_points}}, price: {{ item.price }}</p>
             <small><p class="article-content">special ability: {{item.special_ability}}</p></small>
+            <a class="btn btn-outline-secondary" href="{% url 'char_sheet-is_enchanted_with' item.pk %}">View enchantement</a>
+            <a class="btn btn-outline-secondary" href="{% url 'items-update' item.pk %}">Edit item</a>
+            <a class="btn btn-outline-secondary" href="{% url 'items-delete' item.pk %}">Remove item</a>
           </div>
         </article>
     {% endfor %}
@@ -50,6 +53,8 @@
           <h2>{{ ench.enchantement_name }}</h2>
           <p class="article-content">adds {{ench.additional_damage}} damage</p>
           <small><p class="article-content">description: {{ench.description}}</p></small>
+          <a class="btn btn-outline-secondary" href="{% url 'enchantements-update' ench.pk %}">Edit enchantement</a>
+          <a class="btn btn-outline-secondary" href="{% url 'enchantements-delete' ench.pk %}">Remove enchantement</a>
         </div>
       </article>
     {% endfor %}

@@ -24,12 +24,72 @@ class CharactersDetailView(DetailView):
 class Character_itemsDetailView(DetailView):
     model = ci
 
+
+class EnchantementsCreateView(LoginRequiredMixin, CreateView):
+    model = Enchantements
+    fields = ['enchantement_name', 'description', 'additional_damage']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+class EnchantementsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Enchantements
+    fields = ['enchantement_name', 'description', 'additional_damage']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.username == 'admin':
+            return True
+        else:
+            return False
+
+class EnchantementsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Enchantements
+    success_url = '/items/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.username == 'admin':
+            return True
+        else:
+            return False
+
 class ItemsCreateView(LoginRequiredMixin, CreateView):
     model = Items
     fields = ['item_name', 'damage_points', 'special_ability', 'price']
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+class ItemsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Items
+    fields = ['item_name', 'damage_points', 'special_ability', 'price']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.username == 'admin':
+            return True
+        else:
+            return False
+
+class ItemsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Items
+    success_url = '/items/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.username == 'admin':
+            return True
+        else:
+            return False
 
 class CharactersCreateView(LoginRequiredMixin, CreateView):
     model = Information
@@ -70,7 +130,7 @@ class CharactersUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         else:
             return False
 
-class Character_itemsCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class CICreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = ci
     fields = ['item_name']
 
@@ -80,7 +140,7 @@ class Character_itemsCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateV
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user == obj.character_id.player:
+        if self.request.user.username == 'admin' or self.request.user == obj.character_id.player:
             return True
         else:
             return False
@@ -92,6 +152,32 @@ class Character_itemsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteV
     def test_func(self):
         obj = self.get_object()
         if self.request.user == obj.character_id.player:
+            return True
+        else:
+            return False
+
+class Item_enchantementsCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Item_enchantements
+    fields = ['enchantement_name']
+
+    def form_valid(self, form):
+        form.instance.item_name = self.get_object().item_name
+        return super().form_valid(form)
+
+    def test_func(self):
+        obj = self.get_object()
+        if self.request.user.username == 'admin':
+            return True
+        else:
+            return False
+
+class Item_enchantementsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Item_enchantements
+    success_url = '/items/'
+
+    def test_func(self):
+        obj = self.get_object()
+        if self.request.user.username == 'admin':
             return True
         else:
             return False
@@ -115,6 +201,15 @@ def items(request):
 def carries(request, pk):
     context = {
         'query': ci.objects.filter(character_id=pk),
+        'all': ci.objects.last(),
         'name': Information.objects.get(pk=pk),
     }
     return render(request, 'char_sheet/carries.html', context)
+
+def is_enchanted_with(request, pk):
+    context = {
+        'query': Item_enchantements.objects.filter(item_name=pk),
+        'id': Item_enchantements.objects.last(),
+        'item': Items.objects.get(pk=pk),
+    }
+    return render(request, 'char_sheet/is_enchanted_with.html', context)

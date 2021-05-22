@@ -1,0 +1,17 @@
+{% extends "char_sheet/base.html"%}
+
+{% block content %}
+  <div class="content_section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Remove enchantement</legend>
+        <h2>Are you sure you want "{{ object.item_name.item_name }}" to stop being enchanted with "{{ object.enchantement_name}}"?</h2>
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-danger" type="submit"> Yes, remove enchantement </button>
+        <a class="btn btn-outline-secondary" href="{% url 'char_sheet-is_enchanted_with' object.item_name.pk %}"> No, keep the enchantement </a>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

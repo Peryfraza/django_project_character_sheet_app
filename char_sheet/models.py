@@ -138,9 +138,15 @@ class Enchantements(models.Model):
              add = ''
          return self.enchantement_name + ' ( ' + add + str(self.additional_damage) + ' )'
 
+    def get_absolute_url(self):
+        return reverse('char_sheet-items')
+
 class Item_enchantements(models.Model):
     item_name = models.ForeignKey(Items, on_delete=models.CASCADE)
     enchantement_name = models.ForeignKey(Enchantements, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.item_name) + ' - ' + str(self.enchantement_name)
+
+    def get_absolute_url(self):
+        return reverse('char_sheet-items')
