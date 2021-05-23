@@ -35,6 +35,9 @@ class Abilities(models.Model):
             is_mag = 'magical'
         return self.ability_name+ ' ' + is_mag
 
+    def get_absolute_url(self):
+        return reverse('char_sheet-items')
+
 
 class Race(models.Model):
     RACE_NAMES = (
@@ -47,7 +50,7 @@ class Race(models.Model):
     )
     race_name = models.CharField(max_length=30, choices=RACE_NAMES, primary_key=True)
     description = models.CharField(max_length=250, blank=True, null=True)
-    special_ability = models.ForeignKey(Abilities, on_delete=models.CASCADE)
+    special_ability = models.ForeignKey(Abilities, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         strin = self.race_name
@@ -55,6 +58,9 @@ class Race(models.Model):
         strin2 = strin[1:]
         strin = strin1+strin2.lower()
         return strin
+
+    def get_absolute_url(self):
+        return reverse('char_sheet-items')
 
 class Job_class(models.Model):
     JOB_CLASS_NAMES = (
@@ -68,8 +74,11 @@ class Job_class(models.Model):
     )
     class_id = models.CharField(max_length=30, choices=JOB_CLASS_NAMES, primary_key=True)
     description = models.CharField(max_length=250, blank=True, null=True)
-    weapon = models.ForeignKey(Items, on_delete=models.CASCADE)
-    special_ability = models.ForeignKey(Abilities, on_delete=models.CASCADE, blank=True, null=True)
+    weapon = models.ForeignKey(Items, on_delete=models.SET_NULL, blank=True, null=True)
+    special_ability = models.ForeignKey(Abilities, on_delete=models.SET_NULL, blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse('char_sheet-items')
 
     def __str__(self):
         strin = self.class_id
@@ -124,6 +133,9 @@ class Character_abilities(models.Model):
 
     def __str__(self):
         return str(self.information_id) + ' uses ' + str(self.abilities_id)
+
+    def get_absolute_url(self):
+        return reverse('profile')
 
 class Enchantements(models.Model):
     enchantement_name = models.CharField(max_length=30, primary_key=True)

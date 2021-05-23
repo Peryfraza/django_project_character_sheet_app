@@ -8,12 +8,14 @@
     <div class="media-body">
     <h2 style = "text-align:center">{{item.item_name}} is enchanted with: </h2>
       {% for it in query %}
-        <h6 class="article-content">-> {{it.enchantement_name}}</h6>
-        <a class="btn btn-outline-secondary" href="{% url 'item_enchantements-delete' it.pk %}"><small>remove enchantement</small></a>
+        {% if it.enchantement_name.enchantement_name != "_" %}
+          <h6 class="article-content">-> {{it.enchantement_name}}</h6>
+          <a class="btn btn-outline-secondary" href="{% url 'item_enchantements-delete' it.id %}"><small>remove enchantement</small></a>
+        {% endif %}
       {% endfor %}
     </div>
   </article>
   <div class="media-body">
-    <a class="btn btn-outline-secondary" href="{% url 'item_enchantements-create' id.pk %}">Add enchantement</a>
+    <a class="btn btn-outline-secondary" href="{% url 'item_enchantements-create' id.pk%}">Add enchantement</a>
   </div>
 {% endblock content %}

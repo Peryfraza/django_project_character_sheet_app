@@ -1,0 +1,22 @@
+{% extends "char_sheet/base.html"%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <title>{{name.name}}'s abilities</title>
+  <article class="media content-section">
+    <div class="media-body">
+    <h2 style = "text-align:center">{{name.name}} knows: </h2>
+      {% for it in query %}
+        {% if it.abilities_id.ability_name != "_" %}
+          <h6 class="article-content">-> {{it.abilities_id}}</h6>
+          <a class="btn btn-outline-secondary" href="{% url 'Character_abilities-delete' it.pk %}"><small>unlearn {{it.abilities_id.ability_name}}</small></a>
+          <a class="btn btn-outline-secondary" href="{% url 'Character_abilities-update' it.pk %}"><small>change {{it.abilities_id.ability_name}}</small></a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </article>
+  <div class="media-body">
+    <a class="btn btn-outline-secondary" href="{% url 'Character_abilities-create' all.pk %}">learn a new ability</a>
+  </div>
+{% endblock content %}

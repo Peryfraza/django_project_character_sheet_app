@@ -22,6 +22,8 @@
           <h2>{{ ability.ability_name }}</h2>
           <p class="article-content">level: {{ability.ability_level}}, score: {{ability.ability_score}}, magical: {{ ability.ability_is_magical }}</p>
           <small><p class="article-content">description: {{ability.ability_description}}</p></small>
+          <a class="btn btn-outline-secondary" href="{% url 'abilities-update' ability.pk %}">Edit ability</a>
+          <a class="btn btn-outline-secondary" href="{% url 'abilities-delete' ability.pk %}">Remove ability</a>
         </div>
       </article>
     {% endfor %}
@@ -32,6 +34,8 @@
           <h2>{{ race }}</h2>
           <small><p class="article-content">description: {{race.description}}</p></small>
           <small><p class="article-content">special ability: {{race.special_ability}}</p></small>
+          <a class="btn btn-outline-secondary" href="{% url 'race-update' race.pk %}">Edit race</a>
+          <a class="btn btn-outline-secondary" href="{% url 'race-delete' race.pk %}">Delete race</a>
         </div>
       </article>
     {% endfor %}
@@ -43,6 +47,8 @@
           <p class="article-content">weapon: {{class.weapon}}</p>
           <small><p class="article-content">description: {{class.description}}</p></small>
           <small><p class="article-content">special ability: {{class.special_ability}}</p></small>
+          <a class="btn btn-outline-secondary" href="{% url 'job_class-update' class.pk %}">Edit class</a>
+          <a class="btn btn-outline-secondary" href="{% url 'job_class-delete' class.pk %}">Delete class</a>
         </div>
       </article>
     {% endfor %}

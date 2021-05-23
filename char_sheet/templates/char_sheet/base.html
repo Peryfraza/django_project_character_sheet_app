@@ -24,7 +24,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{% url 'char_sheet-about' %}">About</a>
+            <a class="nav-item nav-link" href="{% url 'char_sheet-items' %}">All data</a>
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
@@ -64,8 +64,9 @@
               <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'character-create' %}">Create a character</a></li>
               <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'items-create' %}">Create an item</a></li>
               <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'enchantements-create' %}">Create an enchantement</a></li>
-              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="#">Create an ability</a></li>
-              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'char_sheet-items' %}">Data</a></li>
+              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'abilities-create' %}">Create an ability</a></li>
+              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'race-create' %}">Create a race</a></li>
+              <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="{% url 'job_class-create' %}">Create a class</a></li>
             </ul>
           </p>
         </div>

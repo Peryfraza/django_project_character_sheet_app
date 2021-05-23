@@ -8,12 +8,14 @@
     <div class="media-body">
     <h2 style = "text-align:center">{{name.name}} carries: </h2>
       {% for it in query %}
-        <h6 class="article-content">-> {{it.item_name}}</h6>
-        <a class="btn btn-outline-secondary" href="{% url 'character_items-delete' it.pk %}"><small>stop carrying {{it.item_name.item_name}}</small></a>
+        {% if it.item_name.item_name != "_" %}
+          <h6 class="article-content">-> {{it.item_name}}</h6>
+          <a class="btn btn-outline-secondary" href="{% url 'character_items-delete' it.pk %}"><small>stop carrying {{it.item_name.item_name}}</small></a>
+        {% endif %}
       {% endfor %}
     </div>
   </article>
   <div class="media-body">
-    <a class="btn btn-outline-secondary" href="{% url 'ci-create' name.pk %}">Add an item for character</a>
+    <a class="btn btn-outline-secondary" href="{% url 'ci-create' all.pk %}">Add an item for character</a>
   </div>
 {% endblock content %}

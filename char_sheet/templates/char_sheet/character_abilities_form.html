@@ -1,0 +1,18 @@
+{% extends "char_sheet/base.html"%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="content_section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4"> Add the ability </legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit"> add </button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
