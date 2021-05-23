@@ -206,7 +206,7 @@ class CICreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.is_superuseror or self.request.user == obj.character_id.player:
+        if self.request.user.is_superuser or self.request.user == obj.character_id.player:
             return True
         else:
             return False
