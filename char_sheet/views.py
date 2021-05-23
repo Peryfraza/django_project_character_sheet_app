@@ -39,7 +39,7 @@ class EnchantementsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVie
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -52,7 +52,7 @@ class EnchantementsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVie
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -79,7 +79,7 @@ class RaceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -92,7 +92,7 @@ class RaceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -113,7 +113,7 @@ class Job_classUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -126,7 +126,7 @@ class Job_classDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -139,7 +139,7 @@ class ItemsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -152,7 +152,7 @@ class ItemsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -175,7 +175,7 @@ class CharactersDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         information = self.get_object()
-        if self.request.user == information.player:
+        if self.request.user == information.player or self.request.user.is_superuser:
             return True
         else:
             return False
@@ -191,7 +191,7 @@ class CharactersUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         information = self.get_object()
-        if self.request.user == information.player:
+        if self.request.user == information.player or self.request.user.is_superuser:
             return True
         else:
             return False
@@ -206,7 +206,7 @@ class CICreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin' or self.request.user == obj.character_id.player:
+        if self.request.user.is_superuseror or self.request.user == obj.character_id.player:
             return True
         else:
             return False
@@ -217,7 +217,7 @@ class Character_itemsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteV
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user == obj.character_id.player:
+        if self.request.user == obj.character_id.player or self.request.user.is_superuser:
             return True
         else:
             return False
@@ -233,7 +233,7 @@ class Item_enchantementsCreateView(LoginRequiredMixin, UserPassesTestMixin, Crea
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -244,7 +244,7 @@ class Item_enchantementsDeleteView(LoginRequiredMixin, UserPassesTestMixin, Dele
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -266,7 +266,7 @@ class AbilitiesUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -277,7 +277,7 @@ class AbilitiesDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin':
+        if self.request.user.is_superuser:
             return True
         else:
             return False
@@ -294,7 +294,7 @@ class Character_abilitiesCreateView(LoginRequiredMixin, UserPassesTestMixin, Cre
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin' or self.request.user.username == obj.information_id.player.username:
+        if self.request.user.is_superuser or self.request.user.username == obj.information_id.player.username:
             return True
         else:
             return False
@@ -310,7 +310,7 @@ class Character_abilitiesUpdateView(LoginRequiredMixin, UserPassesTestMixin, Upd
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin' or self.request.user.username == obj.information_id.player.username:
+        if self.request.user.is_superuser or self.request.user.username == obj.information_id.player.username:
             return True
         else:
             return False
@@ -324,7 +324,7 @@ class Character_abilitiesDeleteView(LoginRequiredMixin, UserPassesTestMixin, Del
 
     def test_func(self):
         obj = self.get_object()
-        if self.request.user.username == 'admin' or self.request.user.username == obj.information_id.player.username:
+        if self.request.user.is_superuser or self.request.user.username == obj.information_id.player.username:
             return True
         else:
             return False
