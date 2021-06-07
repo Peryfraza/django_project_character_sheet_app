@@ -6,8 +6,8 @@
 * [Setup](#setup)
 
 ## General info
-This project help people create their characters, items, classes, races, enchantements and abilities in a Dungeons&Dragons inspired convention. 
-It is generally directed for people who run games, players and also outsiders interested in seeing content. 
+This project helps people create their characters, items, classes, races, enchantements and abilities in a Dungeons&Dragons inspired convention. 
+It is generally directed for people who run games, people who play them and outsiders interested in seeing content and characters. 
 	
 ## Languages and Technologies
 Project is created with:
